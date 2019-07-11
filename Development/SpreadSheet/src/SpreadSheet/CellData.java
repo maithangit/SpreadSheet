@@ -1,32 +1,32 @@
 package SpreadSheet;
 
 public class CellData {
-	private String value;
-	private String expression;
+	private StringType value;
+	private StringType expression;
 	
-	public CellData(String value) {
+	public CellData(StringType value) {
 		this.value = value;
 		this.expression = value;
 	}
 
-	public CellData(String value, String expression) {
+	public CellData(StringType value, StringType expression) {
 		this.value = value;
 		this.expression = expression;
 	}
 
-	public String getValue() {
+	public StringType getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(StringType value) {
 		this.value = value;
 	}
 
-	public String getExpression() {
+	public StringType getExpression() {
 		return expression;
 	}
 
-	public void setExpression(String expression) {
+	public void setExpression(StringType expression) {
 		this.expression = expression;
 	}
 }

@@ -3,13 +3,12 @@ package SpreadSheet;
 public class Cell {
 	private int row;
 	private int col;
-	private CellData data;
+	private Type value;
 	
-	public Cell(int row, int col, CellData data) {
-		super();
+	public Cell(int row, int col, Type value) {
 		this.row = row;
 		this.col = col;
-		this.data = data;
+		this.value = value;
 	}
 	
 	public int getRow() {
@@ -28,11 +27,24 @@ public class Cell {
 		this.col = col;
 	}
 
-	public CellData getData() {
-		return data;
+	public Type getData() {
+		return value;
 	}
 
-	public void setData(CellData data) {
-		this.data = data;
+	public void setValue(Type value) {
+		this.value = value;
+	}
+
+	public Object getValue() {
+		return value.getValue();
+	}
+
+	public String getContent() {
+		return value.getContent();
+	}
+
+	@Override
+	public String toString() {
+		return "[" + row + "," + col + "]";
 	}
 }

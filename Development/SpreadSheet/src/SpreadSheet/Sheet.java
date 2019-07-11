@@ -7,7 +7,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Sheet {
-	private List<Cell> cells;
+	private static List<Cell> cells;
+
+	public static Cell getCell(int r, int c) {
+		for (Cell cell : cells) {
+			if (cell.getRow() == r && cell.getCol() == c) {
+				return cell;
+			}
+		}
+		return null;
+	}
 
 	public Sheet() {
 		cells = new ArrayList<>();
@@ -66,17 +75,22 @@ public class Sheet {
 		
 		for (Cell cell : cells) {
 			if (cell.getRow() != row) {
-				reString += "\n" + String.format("| %5s | %-20s |", cell.getRow(), cell.getData().getValue());
+				reString += "\n" + String.format("| %5s | %-20s |", cell.getRow(), cell.getValue());
 				row = cell.getRow();
 			}
 			else {
-				reString += "\t" + String.format("%30s |", cell.getData().getValue());
+				reString += "\t" + String.format("%30s |", cell.getValue());
 			}
 		}
 		
 		reString += "\n" + "--------------------------------------------------------------------------------------------------------------------------------------------------------";
 		
 		return reString;
+	}
+
+	public void modifyCell(int r, int c, String content) {
+		Cell cell = getCell(r,c);
+		cell.setValue(TypeFactory.getInstanceType(content));
 	}
 	
 	public void print() {
