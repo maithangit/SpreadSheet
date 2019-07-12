@@ -44,10 +44,16 @@ public class DataTypeFactory {
         return true;
     }
 
+//    public static boolean isFormula(String content) {
+//        Pattern pattern = Pattern.compile("((\\d*\\.\\d+)|(\\d+)|([\\+\\-\\*/\\(\\)]))");
+//        Matcher m = pattern.matcher(content);
+//        return m.lookingAt();
+//    }
+    
     public static boolean isFormula(String content) {
-        Pattern pattern = Pattern.compile("((\\d*\\.\\d+)|(\\d+)|([\\+\\-\\*/\\(\\)]))");
+        Pattern pattern = Pattern.compile("([+*/-])");
         Matcher m = pattern.matcher(content);
-        return m.lookingAt();
+        return m.find();
     }
 
     public static boolean isReference(String content) {
