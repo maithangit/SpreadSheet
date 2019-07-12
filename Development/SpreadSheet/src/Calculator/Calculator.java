@@ -36,18 +36,10 @@ public class Calculator {
         
         valueStack.push(res);
     }
-
-    private Token[] parseExpression(String input) {
-    	String[] parts = input.split(" ");
-        Token[] tokens = new Token[parts.length];
-        for (int n = 0; n < parts.length; n++) {
-            tokens[n] = new Token(parts[n]);
-        }
-        return tokens;
-    }
     
     public double calculate(String input) {
-    	Token[] tokens = parseExpression(input);
+//    	String expression = ExpressionUtil.formatExpression(input); 
+    	Token[] tokens = ExpressionUtil.parseToken(input);
     	
         //Process tokens
         for (int n = 0; n < tokens.length; n++) {
