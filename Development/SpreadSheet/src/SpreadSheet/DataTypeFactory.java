@@ -30,7 +30,7 @@ public class DataTypeFactory {
             Cell reference = parseReferenceContent(content);
             if (reference != null) return new Reference(parseReferenceContent(content));
         } else if (isFormula(content)) {
-            return new Formula(parseReferenceInFormula(content));
+            return new Formula(content, parseReferenceInFormula(content));
         }
         return new StringType(content);
     }

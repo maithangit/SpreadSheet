@@ -42,7 +42,7 @@ public class Application {
 				add(new Cell(6, 4, DataTypeFactory.getInstanceType("")));
 				
 				add(new Cell(7, 1, DataTypeFactory.getInstanceType("Sub-total:")));
-				add(new Cell(7, 2, DataTypeFactory.getInstanceType("$7881")));
+				add(new Cell(7, 2, DataTypeFactory.getInstanceType("[1,2] + [2,2] + [3,2] + [4,2] + [5,2]")));
 				add(new Cell(7, 3, DataTypeFactory.getInstanceType("")));
 				add(new Cell(7, 4, DataTypeFactory.getInstanceType("")));
 				
@@ -78,12 +78,12 @@ public class Application {
 
 
 		//reference
-		sheet.modifyCell(6,1, "[1,1]");
-		sheet.modifyCell(6,2, "[1,2]");
-		sheet.modifyCell(6,3, "[1,3]");
-		sheet.modifyCell(6,4, "[1,4]");
-
-		sheet.modifyCell(7,4, "2+3-4+[1, 3]+ [1,3]");
+//		sheet.modifyCell(6,1, "[1,1]");
+//		sheet.modifyCell(6,2, "[1,2]");
+//		sheet.modifyCell(6,3, "[1,3]");
+//		sheet.modifyCell(6,4, "[1,4]");
+//
+		sheet.modifyCell(7,4, "2 + 3 - 4 + [1,3] + [1,3]");
 
 		sheet.print();
 

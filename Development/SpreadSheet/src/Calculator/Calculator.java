@@ -13,7 +13,7 @@ public class Calculator {
         valid = false;
     }
 
-    private void execute(Token token) {
+    private void compute(Token token) {
         Token left = null, right = null;
         if (valueStack.isEmpty()) {
             System.out.println("Expression error.");
@@ -54,7 +54,7 @@ public class Calculator {
                     while (!operatorStack.isEmpty() && nextToken.getPrecedence() <= operatorStack.peek().getPrecedence()) {
                         Token toProcess = operatorStack.peek();
                         operatorStack.pop();
-                        execute(toProcess);
+                        compute(toProcess);
                     }
                     operatorStack.push(nextToken);
                 }
@@ -64,7 +64,7 @@ public class Calculator {
                 while (!operatorStack.isEmpty() && operatorStack.peek().getType() == TokenType.OPERATOR) {
                     Token toProcess = operatorStack.peek();
                     operatorStack.pop();
-                    execute(toProcess);
+                    compute(toProcess);
                 }
                 if (!operatorStack.isEmpty() && operatorStack.peek().getType() == TokenType.OPEN_PARENTHESIS) {
                     operatorStack.pop();
@@ -79,7 +79,7 @@ public class Calculator {
         while (!operatorStack.isEmpty() && operatorStack.peek().getType() == TokenType.OPERATOR) {
             Token toProcess = operatorStack.peek();
             operatorStack.pop();
-            execute(toProcess);
+            compute(toProcess);
         }
 
         if(valid == false) {
