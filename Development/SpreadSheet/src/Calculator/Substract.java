@@ -1,8 +1,8 @@
 package Calculator;
 
-public class Multiply extends Operator {
+public class Substract extends Operator {
 	@Override
 	public double compute(double left, double right) {
-		return left * right;
+		return left - right;
 	}
 }
