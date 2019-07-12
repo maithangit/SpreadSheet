@@ -3,8 +3,9 @@ package Calculator;
 public class Token {
 	private TokenType tokenType;
 	private double value;
-	private char operator;
+	//private char operator;
 	private int precedence;
+	private Operator operator;
 	   
 	public Token() {
 		tokenType = TokenType.UNKNOWN;
@@ -14,22 +15,26 @@ public class Token {
        switch(contents) {
            case "+":
                tokenType = TokenType.OPERATOR;
-               operator = contents.charAt(0);
+               //operator = contents.charAt(0);
+               operator = new Plus();
                precedence = 1;
                break;
            case "-":
         	   tokenType = TokenType.OPERATOR;
-               operator = contents.charAt(0);
+               //operator = contents.charAt(0);
+        	   operator = new Substract();
                precedence = 1;
                break;
            case "x":
                tokenType = TokenType.OPERATOR;
-               operator = contents.charAt(0);
+               //operator = contents.charAt(0);
+               operator = new Multiply();
                precedence = 2;
                break;
            case "/":
         	   tokenType = TokenType.OPERATOR;
-               operator = contents.charAt(0);
+               //operator = contents.charAt(0);
+        	   operator = new Divide();
                precedence = 2;
                break;
            case "(":
@@ -68,22 +73,26 @@ public class Token {
 	   return precedence; 
    }
    
-   Token execute(double a,double b) {
-       double result = 0;
-       switch(operator) {
-           case '+':
-               result = a + b;
-               break;
-           case '-':
-               result = a - b;
-               break;
-           case 'x':
-               result = a * b;
-               break;
-           case '/':
-               result = a / b;
-               break;
-       }
-       return new Token(result);
+   public Operator getOperator() {
+	   return operator;
    }
+   
+//   Token execute(double a,double b) {
+//       double result = 0;
+//       switch(operator) {
+//           case '+':
+//               result = a + b;
+//               break;
+//           case '-':
+//               result = a - b;
+//               break;
+//           case 'x':
+//               result = a * b;
+//               break;
+//           case '/':
+//               result = a / b;
+//               break;
+//       }
+//       return new Token(result);
+//   }
 }

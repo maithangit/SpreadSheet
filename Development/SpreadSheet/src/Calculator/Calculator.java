@@ -13,14 +13,14 @@ public class Calculator {
         valid = false;
     }
 
-    private void execute(Token t) {
-        Token A = null, B = null;
+    private void execute(Token token) {
+        Token left = null, right = null;
         if (valueStack.isEmpty()) {
             System.out.println("Expression error.");
             valid = true;
             return;
         } else {
-            B = valueStack.peek();
+            right = valueStack.peek();
             valueStack.pop();
         }
         if (valueStack.isEmpty()) {
@@ -28,11 +28,12 @@ public class Calculator {
             valid = true;
             return;
         } else {
-            A = valueStack.peek();
+            left = valueStack.peek();
             valueStack.pop();
         }
         
-        Token res = t.execute(A.getValue(), B.getValue());
+        Token res = new Token ( "" + token.getOperator()
+										  .compute(left.getValue(), right.getValue()));
         
         valueStack.push(res);
     }
