@@ -27,10 +27,14 @@ public class Sheet {
 	}
 	
 	public void addCell(Cell c) {
+		c.linkToSheet(this);
 		cells.add(c);
 	}
 	
 	public void addCells(List<Cell> listCells) {
+		for(Cell cell : cells){
+			cell.linkToSheet(this);
+		}
 		cells.addAll(listCells);
 	}
 	
@@ -96,5 +100,22 @@ public class Sheet {
 	public void print() {
 		System.out.println(toString());
 		
+	}
+
+	public void examine() {
+		StringBuilder examination = new StringBuilder();
+
+		for (Cell cell : cells) {
+			if (cell.getContent() != "") {
+				examination.append(String.format("%s = %s \n",
+						cell.toString(),
+						cell.getContent()));
+			}
+		}
+
+		System.out.println();
+		System.out.println("==// Examine Spreadsheet //==");
+		System.out.println("------------------------------------");
+		System.out.println(examination.toString());
 	}
 }

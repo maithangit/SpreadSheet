@@ -1,5 +1,8 @@
 package SpreadSheet;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /*
 give input and return dedicated Type object
 
@@ -23,25 +26,50 @@ public class DataTypeFactory {
         if (isNumeric(content)) {
             Double val = Double.parseDouble(content);
             return new NumberType(val);
-        }
-        else {
+        } else if (isReference(content)) {
             Cell reference = parseReferenceContent(content);
             if (reference != null) return new Reference(parseReferenceContent(content));
+        } else if (isFormula(content)) {
+            return new Formula(parseReferenceInFormula(content));
         }
-        return  new StringType(content);
+        return new StringType(content);
     }
 
-    public static boolean isNumeric(String str)
-    {
-        try
-        {
+    public static boolean isNumeric(String str) {
+        try {
             double d = Double.parseDouble(str);
-        }
-        catch(NumberFormatException nfe)
-        {
+        } catch (NumberFormatException nfe) {
             return false;
         }
         return true;
+    }
+
+    public static boolean isFormula(String content) {
+        Pattern pattern = Pattern.compile("((\\d*\\.\\d+)|(\\d+)|([\\+\\-\\*/\\(\\)]))");
+        Matcher m = pattern.matcher(content);
+        return m.lookingAt();
+    }
+
+    public static boolean isReference(String content) {
+        Pattern pattern = Pattern.compile("(\\[\\d+,(\\s)?\\d+\\])");
+        Matcher m = pattern.matcher(content);
+        return m.matches();
+    }
+
+    private static String parseReferenceInFormula(String content){
+        String result = content;
+        Pattern pattern = Pattern.compile("(\\[\\d+,(\\s)?\\d+\\])");
+        Matcher m = pattern.matcher(content);
+
+        while(m.find()){
+            String refStr = m.group();
+            Cell c = parseReferenceContent(refStr);
+            if(c != null){
+                result = result.replace(refStr, c.getValue().toString());
+            }
+        }
+
+        return result;
     }
 
     private static Cell parseReferenceContent(String content) {

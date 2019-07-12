@@ -13,7 +13,7 @@ public class Application {
 			{
 				add(new Cell(1, 1, DataTypeFactory.getInstanceType("Airfare: ")));
 				add(new Cell(1, 2, DataTypeFactory.getInstanceType("$6885.15")));
-				add(new Cell(1, 3, DataTypeFactory.getInstanceType("")));
+				add(new Cell(1, 3, DataTypeFactory.getInstanceType("5")));
 				add(new Cell(1, 4, DataTypeFactory.getInstanceType("What we pay to the airlines")));
 				
 				add(new Cell(2, 1, DataTypeFactory.getInstanceType("Taxi: ")));
@@ -83,7 +83,12 @@ public class Application {
 		sheet.modifyCell(6,3, "[1,3]");
 		sheet.modifyCell(6,4, "[1,4]");
 
+		sheet.modifyCell(7,4, "2+3-4+[1, 3]+ [1,3]");
+
 		sheet.print();
+
+		// examine spreadsheet.
+		sheet.examine();
 	}
 
 }
