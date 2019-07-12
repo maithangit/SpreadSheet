@@ -27,10 +27,14 @@ public class Sheet {
 	}
 	
 	public void addCell(Cell c) {
+		c.linkToSheet(this);
 		cells.add(c);
 	}
 	
 	public void addCells(List<Cell> listCells) {
+		for(Cell cell : cells){
+			cell.linkToSheet(this);
+		}
 		cells.addAll(listCells);
 	}
 	
@@ -58,24 +62,24 @@ public class Sheet {
 		OrganizeCell();
 		int row = 0;
 		String reString = "";
-		reString += "--------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+		//reString += "--------------------------------------------------------------------------------------------------------------------------------------------------------\n";
 		
 		for (int i = 0; i <= getMaxCol(); i++) {
 			if (i > 1)
-				reString +=  String.format("  %35s  ", i);
+				reString +=  String.format("  %30s  ", i);
 			else if (i==0)
-				reString +=  String.format("  %5s  ", "");
+				reString +=  String.format("  %2s  ", "");
 			else {
 				reString +=  String.format("  %12s  ", 1);
 			}
 		}
 		
-		reString += "\n" + "--------------------------------------------------------------------------------------------------------------------------------------------------------";
+		reString += "\n" + "     -------------------------------------------------------------------------------------------------------------------------------------------";
 		
 		
 		for (Cell cell : cells) {
 			if (cell.getRow() != row) {
-				reString += "\n" + String.format("| %5s | %-20s |", cell.getRow(), cell.getValue());
+				reString += "\n" + String.format("  %2s | %-20s |", cell.getRow(), cell.getValue());
 				row = cell.getRow();
 			}
 			else {
@@ -83,18 +87,35 @@ public class Sheet {
 			}
 		}
 		
-		reString += "\n" + "--------------------------------------------------------------------------------------------------------------------------------------------------------";
+		reString += "\n" + "     -------------------------------------------------------------------------------------------------------------------------------------------";
 		
 		return reString;
 	}
 
 	public void modifyCell(int r, int c, String content) {
 		Cell cell = getCell(r,c);
-		cell.setValue(TypeFactory.getInstanceType(content));
+		cell.setValue(DataTypeFactory.getInstanceType(content));
 	}
 	
 	public void print() {
 		System.out.println(toString());
 		
+	}
+
+	public void examine() {
+		StringBuilder examination = new StringBuilder();
+
+		for (Cell cell : cells) {
+			if (cell.getContent() != "") {
+				examination.append(String.format("%s = %s \n",
+						cell.toString(),
+						cell.getContent()));
+			}
+		}
+
+		System.out.println();
+		System.out.println("==// Examine Spreadsheet //==");
+		System.out.println("------------------------------------");
+		System.out.println(examination.toString());
 	}
 }

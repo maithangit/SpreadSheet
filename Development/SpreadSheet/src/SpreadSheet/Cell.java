@@ -3,13 +3,14 @@ package SpreadSheet;
 public class Cell {
 	private int row;
 	private int col;
-	private Type value;
+	private DataType value;
 	private Sheet sheet;
 	
-	public Cell(int row, int col, String content) {
+	public Cell(int row, int col, DataType value) {
 		this.row = row;
 		this.col = col;
-		this.value = TypeFactory.getInstanceType(content);
+		this.value = value;
+		this.sheet = sheet;
 	}
 	
 	public int getRow() {
@@ -28,11 +29,11 @@ public class Cell {
 		this.col = col;
 	}
 
-	public Type getData() {
+	public DataType getData() {
 		return value;
 	}
 
-	public void setValue(Type value) {
+	public void setValue(DataType value) {
 		this.value = value;
 	}
 
@@ -43,6 +44,10 @@ public class Cell {
 	public String getContent() {
 		return value.getContent();
 	}
+
+	public void linkToSheet(Sheet sheet){ this.sheet = sheet; }
+
+	public Sheet getSheet() { return this.sheet; }
 
 	@Override
 	public String toString() {
