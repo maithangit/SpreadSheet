@@ -25,7 +25,7 @@ public class Token {
         	   operator = new Substract();
                precedence = 1;
                break;
-           case "x":
+           case "*":
                tokenType = TokenType.OPERATOR;
                //operator = contents.charAt(0);
                operator = new Multiply();
