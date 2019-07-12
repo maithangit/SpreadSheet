@@ -43,24 +43,23 @@ public class Calculator {
     	Token[] tokens = ExpressionUtil.parseToken(input);
     	
         //Process tokens
-        for (int n = 0; n < tokens.length; n++) {
-            Token nextToken = tokens[n];
-            if (nextToken.getType() == TokenType.NUMBER) {
-                valueStack.push(nextToken);
-            } else if (nextToken.getType() == TokenType.OPERATOR) {
-                if (operatorStack.isEmpty() || nextToken.getPrecedence() > operatorStack.peek().getPrecedence()) {
-                    operatorStack.push(nextToken);
+    	for (Token token : tokens) {
+    		if (token.getType() == TokenType.NUMBER) {
+                valueStack.push(token);
+            } else if (token.getType() == TokenType.OPERATOR) {
+                if (operatorStack.isEmpty() || token.getPrecedence() > operatorStack.peek().getPrecedence()) {
+                    operatorStack.push(token);
                 } else {
-                    while (!operatorStack.isEmpty() && nextToken.getPrecedence() <= operatorStack.peek().getPrecedence()) {
+                    while (!operatorStack.isEmpty() && token.getPrecedence() <= operatorStack.peek().getPrecedence()) {
                         Token toProcess = operatorStack.peek();
                         operatorStack.pop();
                         compute(toProcess);
                     }
-                    operatorStack.push(nextToken);
+                    operatorStack.push(token);
                 }
-            } else if (nextToken.getType() == TokenType.OPEN_PARENTHESIS) {
-                operatorStack.push(nextToken);
-            } else if (nextToken.getType() == TokenType.CLOSE_PARENTHESIS) {
+            } else if (token.getType() == TokenType.OPEN_PARENTHESIS) {
+                operatorStack.push(token);
+            } else if (token.getType() == TokenType.CLOSE_PARENTHESIS) {
                 while (!operatorStack.isEmpty() && operatorStack.peek().getType() == TokenType.OPERATOR) {
                     Token toProcess = operatorStack.peek();
                     operatorStack.pop();
@@ -73,8 +72,7 @@ public class Calculator {
                     valid = true;
                 }
             }
-
-        }
+		}
 
         while (!operatorStack.isEmpty() && operatorStack.peek().getType() == TokenType.OPERATOR) {
             Token toProcess = operatorStack.peek();

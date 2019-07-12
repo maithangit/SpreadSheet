@@ -51,7 +51,8 @@ public class DataTypeFactory {
 //    }
     
     public static boolean isFormula(String content) {
-        Pattern pattern = Pattern.compile("([+*/-])");
+        //Pattern pattern = Pattern.compile("([+*/-])");
+    	Pattern pattern = Pattern.compile("(([-+*\\/ ])*\\d+((\\.\\d+)?)|(\\[[\\d+][\\,\\ ]*[\\d+]\\]))");
         Matcher m = pattern.matcher(content);
         return m.find();
     }
