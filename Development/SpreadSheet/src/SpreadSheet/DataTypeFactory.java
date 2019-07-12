@@ -4,7 +4,7 @@ package SpreadSheet;
 give input and return dedicated Type object
 
 parse inputs:
-“”	        String, everything inside a double quote will be considered as a string
+“�?	        String, everything inside a double quote will be considered as a string
 
 0-9	        Number, only contains numbers
 
@@ -14,12 +14,12 @@ parse inputs:
 
 Number/String + Operation = Formula
 */
-public class TypeFactory {
+public class DataTypeFactory {
     private enum types {
         String, Number, Reference, Formula
     }
 
-    public static Type getInstanceType(String content) {
+    public static DataType getInstanceType(String content) {
         if (isNumeric(content)) {
             Double val = Double.parseDouble(content);
             return new NumberType(val);

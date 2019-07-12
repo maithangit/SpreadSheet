@@ -1,6 +1,6 @@
 package SpreadSheet;
 
-public interface Type {
+public interface DataType {
     Object getValue();
     String getContent();
 }

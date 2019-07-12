@@ -1,6 +1,6 @@
 package SpreadSheet;
 
-public class Formula implements Type {
+public class Formula implements DataType {
     private String content;
     private Object valueAfterCalculated;
     @Override

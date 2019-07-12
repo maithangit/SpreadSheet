@@ -2,7 +2,7 @@ package SpreadSheet;
 
 
 //need put some constraint here for reference hell loop
-public class Reference implements Type {
+public class Reference implements DataType {
     private Cell reference;
 
     public Reference(Cell reference) {

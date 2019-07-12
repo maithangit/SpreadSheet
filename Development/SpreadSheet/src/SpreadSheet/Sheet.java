@@ -90,7 +90,7 @@ public class Sheet {
 
 	public void modifyCell(int r, int c, String content) {
 		Cell cell = getCell(r,c);
-		cell.setValue(TypeFactory.getInstanceType(content));
+		cell.setValue(DataTypeFactory.getInstanceType(content));
 	}
 	
 	public void print() {

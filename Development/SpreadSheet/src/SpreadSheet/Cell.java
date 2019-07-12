@@ -3,9 +3,9 @@ package SpreadSheet;
 public class Cell {
 	private int row;
 	private int col;
-	private Type value;
+	private DataType value;
 	
-	public Cell(int row, int col, Type value) {
+	public Cell(int row, int col, DataType value) {
 		this.row = row;
 		this.col = col;
 		this.value = value;
@@ -27,11 +27,11 @@ public class Cell {
 		this.col = col;
 	}
 
-	public Type getData() {
+	public DataType getData() {
 		return value;
 	}
 
-	public void setValue(Type value) {
+	public void setValue(DataType value) {
 		this.value = value;
 	}
 
