@@ -4,11 +4,12 @@ public class Cell {
 	private int row;
 	private int col;
 	private Type value;
+	private Sheet sheet;
 	
-	public Cell(int row, int col, Type value) {
+	public Cell(int row, int col, String content) {
 		this.row = row;
 		this.col = col;
-		this.value = value;
+		this.value = TypeFactory.getInstanceType(content);
 	}
 	
 	public int getRow() {
