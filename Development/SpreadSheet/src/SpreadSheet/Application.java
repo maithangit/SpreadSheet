@@ -83,8 +83,7 @@ public class Application {
 		sheet.modifyCell(6,3, "[1,3]");
 		sheet.modifyCell(6,4, "[1,4]");
 
-		System.out.println(Sheet.getCell(6,1).getValue());
-		System.out.println(Sheet.getCell(6,1).getContent());
+		sheet.examine();
 
 		sheet.print();
 	}
