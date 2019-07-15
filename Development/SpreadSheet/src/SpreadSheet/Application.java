@@ -72,7 +72,7 @@ public class Application {
 //		sheet.modifyCell(6,3, "[1,3]");
 //		sheet.modifyCell(6,4, "[1,4]");
 //
-		sheet.modifyCell(7,2, "([1,2] + [2,2]) + [3,2] + [4,2] + [5,2]");
+		sheet.modifyCell(7,2, "([1,2] + [2,2] + [3,2] + [4,2] + [5,2])");
 		//sheet.modifyCell(7,4, "2 + 3 - 4 + [1,3] + [1,3]");
 		sheet.modifyCell(9,2, "([7,2] * (1.0 - [8,2]))");
 		sheet.modifyCell(12, 2, "([9,2] / [10,2] / [11,2])");
