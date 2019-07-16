@@ -19,4 +19,9 @@ public class Formula implements DataType {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public void updateValue() {
+        //valueAfterCalculated = new Calculator().calculate(formatedContent);
+    }
 }

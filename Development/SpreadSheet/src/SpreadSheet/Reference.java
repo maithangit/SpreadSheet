@@ -18,4 +18,9 @@ public class Reference implements DataType {
     public String getContent() {
         return reference.toString();
     }
+
+    @Override
+    public void updateValue() {
+        getValue();
+    }
 }

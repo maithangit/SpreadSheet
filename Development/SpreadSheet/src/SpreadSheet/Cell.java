@@ -1,10 +1,15 @@
 package SpreadSheet;
 
-public class Cell {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cell implements ISubject, IObserver {
     private int row;
     private int col;
     private DataType value;
     private Sheet sheet;
+    //List of cells that observe this
+    List<Cell> observerList = new ArrayList<>();
 
     public Cell(int row, int col, DataType value) {
         this.row = row;
@@ -55,5 +60,16 @@ public class Cell {
     @Override
     public String toString() {
         return "[" + row + "," + col + "]";
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Cell cell : observerList) cell.update();
+    }
+
+    @Override
+    public void update() {
+        //recalculate its value
+        value.updateValue();
     }
 }
