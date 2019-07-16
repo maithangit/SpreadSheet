@@ -6,11 +6,10 @@ public class Cell {
     private DataType value;
     private Sheet sheet;
 
-    public Cell(int row, int col, String content) {
+    public Cell(int row, int col, DataType value) {
         this.row = row;
         this.col = col;
-        this.value = DataTypeFactory.getInstanceType(content);
-        this.sheet = sheet;
+        this.value = value;
     }
 
     public int getRow() {

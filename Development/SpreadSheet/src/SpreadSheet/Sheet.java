@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Sheet {
-    private static List<Cell> cells;
+    private List<Cell> cells;
 
-    public static Cell getCell(int r, int c) {
+    private DataTypeFactory dataTypeFactory = new DataTypeFactory(this);
+
+    public Cell getCell(int r, int c) {
         for (Cell cell : cells) {
             if (cell.getRow() == r && cell.getCol() == c) {
                 return cell;
@@ -24,6 +26,12 @@ public class Sheet {
 
     public Sheet(List<Cell> cells) {
         this.cells = cells;
+    }
+
+    public void addCell(int r, int c, String content) {
+        Cell cell = new Cell(r , c, dataTypeFactory.getInstanceType(content));
+        cell.linkToSheet(this);
+        cells.add(cell);
     }
 
     public void addCell(Cell c) {
@@ -92,7 +100,7 @@ public class Sheet {
 
     public void modifyCell(int r, int c, String content) {
         Cell cell = getCell(r, c);
-        cell.setValue(DataTypeFactory.getInstanceType(content));
+        cell.setValue(dataTypeFactory.getInstanceType(content));
     }
 
     public void print() {

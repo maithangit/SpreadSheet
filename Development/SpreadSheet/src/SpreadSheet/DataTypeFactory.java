@@ -18,11 +18,14 @@ parse inputs:
 Number/String + Operation = Formula
 */
 public class DataTypeFactory {
-    private enum types {
-        String, Number, Reference, Formula
+
+    private Sheet sheet;
+
+    public DataTypeFactory(Sheet sheet) {
+        this.sheet = sheet;
     }
 
-    public static DataType getInstanceType(String content) {
+    public DataType getInstanceType(String content) {
         if (isNumeric(content)) {
             Double val = Double.parseDouble(content);
             return new NumberType(val);
@@ -63,7 +66,7 @@ public class DataTypeFactory {
         return m.matches();
     }
 
-    private static String parseReferenceInFormula(String content){
+    private String parseReferenceInFormula(String content){
         String result = content;
         Pattern pattern = Pattern.compile("(\\[(\\d+),(\\s)?(\\d+)\\])");
         Matcher m = pattern.matcher(content);
@@ -79,13 +82,13 @@ public class DataTypeFactory {
         return result;
     }
 
-    private static Cell parseReferenceContent(String content) {
+    private Cell parseReferenceContent(String content) {
         Pattern pattern = Pattern.compile("(\\[(\\d+),(\\d+)\\])");
         Matcher m = pattern.matcher(content);
         if (m.matches()) {
             int row = Integer.valueOf(m.group(2));
             int col = Integer.valueOf(m.group(3));
-            return Sheet.getCell(row, col);
+            return sheet.getCell(row, col);
         }
         return null;
     }

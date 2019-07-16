@@ -5,65 +5,65 @@ public class Application {
 	public static void main(String[] args) {
 		Sheet sheet = new Sheet();
 		
-		sheet.addCell(new Cell(1, 1, "Airfare:"));
-		sheet.addCell(new Cell(1, 2, "6885.15"));
-		sheet.addCell(new Cell(1, 3, ""));  // 5
-		sheet.addCell(new Cell(1, 4, "What we pay to the airlines"));
+		sheet.addCell(1, 1, "Airfare:");
+		sheet.addCell(1, 2, "6885.15");
+		sheet.addCell(1, 3, "");  // 5
+		sheet.addCell(1, 4, "What we pay to the airlines");
 		
-		sheet.addCell(new Cell(2, 1, "Taxi:"));
-		sheet.addCell(new Cell(2, 2, "118"));
-		sheet.addCell(new Cell(2, 3, ""));
-		sheet.addCell(new Cell(2, 4, ""));
+		sheet.addCell(2, 1, "Taxi:");
+		sheet.addCell(2, 2, "118");
+		sheet.addCell(2, 3, "");
+		sheet.addCell(2, 4, "");
 		
-		sheet.addCell(new Cell(3, 1, "Rental Car:"));
-		sheet.addCell(new Cell(3, 2, "295.85"));
-		sheet.addCell(new Cell(3, 3, ""));
-		sheet.addCell(new Cell(3, 4, ""));
+		sheet.addCell(3, 1, "Rental Car:");
+		sheet.addCell(3, 2, "295.85");
+		sheet.addCell(3, 3, "");
+		sheet.addCell(3, 4, "");
 		
-		sheet.addCell(new Cell(4, 1, "Hotel:"));
-		sheet.addCell(new Cell(4, 2, "431"));
-		sheet.addCell(new Cell(4, 3, ""));
-		sheet.addCell(new Cell(4, 4, ""));
+		sheet.addCell(4, 1, "Hotel:");
+		sheet.addCell(4, 2, "431");
+		sheet.addCell(4, 3, "");
+		sheet.addCell(4, 4, "");
 		
-		sheet.addCell(new Cell(5, 1, "Meals:"));
-		sheet.addCell(new Cell(5, 2, "150"));
-		sheet.addCell(new Cell(5, 3, ""));
-		sheet.addCell(new Cell(5, 4, "All meals combined"));
+		sheet.addCell(5, 1, "Meals:");
+		sheet.addCell(5, 2, "150");
+		sheet.addCell(5, 3, "");
+		sheet.addCell(5, 4, "All meals combined");
 		
-		sheet.addCell(new Cell(6, 1, ""));
-		sheet.addCell(new Cell(6, 2, ""));
-		sheet.addCell(new Cell(6, 3, ""));
-		sheet.addCell(new Cell(6, 4, ""));
+		sheet.addCell(6, 1, "");
+		sheet.addCell(6, 2, "");
+		sheet.addCell(6, 3, "");
+		sheet.addCell(6, 4, "");
 		
-		sheet.addCell(new Cell(7, 1, "Sub-total:"));
-		sheet.addCell(new Cell(7, 2, ""));
-		sheet.addCell(new Cell(7, 3, ""));
-		sheet.addCell(new Cell(7, 4, ""));
+		sheet.addCell(7, 1, "Sub-total:");
+		sheet.addCell(7, 2, "");
+		sheet.addCell(7, 3, "");
+		sheet.addCell(7, 4, "");
 		
-		sheet.addCell(new Cell(8, 1, "Discount:"));
-		sheet.addCell(new Cell(8, 2, "0.15"));
-		sheet.addCell(new Cell(8, 3, ""));
-		sheet.addCell(new Cell(8, 4, ""));
+		sheet.addCell(8, 1, "Discount:");
+		sheet.addCell(8, 2, "0.15");
+		sheet.addCell(8, 3, "");
+		sheet.addCell(8, 4, "");
 		
-		sheet.addCell(new Cell(9, 1, "Total:"));
-		sheet.addCell(new Cell(9, 2, ""));
-		sheet.addCell(new Cell(9, 3, ""));
-		sheet.addCell(new Cell(9, 4, ""));
+		sheet.addCell(9, 1, "Total:");
+		sheet.addCell(9, 2, "");
+		sheet.addCell(9, 3, "");
+		sheet.addCell(9, 4, "");
 		
-		sheet.addCell(new Cell(10, 1, "Partners:"));
-		sheet.addCell(new Cell(10, 2, "4"));
-		sheet.addCell(new Cell(10, 3, ""));
-		sheet.addCell(new Cell(10, 4, ""));
+		sheet.addCell(10, 1, "Partners:");
+		sheet.addCell(10, 2, "4");
+		sheet.addCell(10, 3, "");
+		sheet.addCell(10, 4, "");
 		
-		sheet.addCell(new Cell(11, 1, "Months:"));
-		sheet.addCell(new Cell(11, 2, "12"));
-		sheet.addCell(new Cell(11, 3, ""));
-		sheet.addCell(new Cell(11, 4, ""));
+		sheet.addCell(11, 1, "Months:");
+		sheet.addCell(11, 2, "12");
+		sheet.addCell(11, 3, "");
+		sheet.addCell(11, 4, "");
 		
-		sheet.addCell(new Cell(12, 1, "Installments:"));
-		sheet.addCell(new Cell(12, 2, "")); //139.559375
-		sheet.addCell(new Cell(12, 3, ""));
-		sheet.addCell(new Cell(12, 4, ""));
+		sheet.addCell(12, 1, "Installments:");
+		sheet.addCell(12, 2, ""); //139.559375
+		sheet.addCell(12, 3, "");
+		sheet.addCell(12, 4, "");
 
 
 		//reference
