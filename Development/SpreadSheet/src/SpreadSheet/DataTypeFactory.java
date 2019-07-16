@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 give input and return dedicated Type object
 
 parse inputs:
-â€œâ€?	        String, everything inside a double quote will be considered as a string
+""	        String, everything inside a double quote will be considered as a string
 
 0-9	        Number, only contains numbers
 
