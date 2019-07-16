@@ -1,5 +1,6 @@
 package Calculator;
 
+import java.util.List;
 import java.util.Stack;
 
 public class Calculator {
@@ -40,7 +41,8 @@ public class Calculator {
     
     public double calculate(String input) {
 //    	String expression = ExpressionUtil.formatExpression(input); 
-    	Token[] tokens = ExpressionUtil.parseToken(input);
+    	//Token[] tokens = ExpressionUtil.parseToken(input);
+        List<Token> tokens = ExpressionUtil.parseToken(input);
     	
         //Process tokens
     	for (Token token : tokens) {
