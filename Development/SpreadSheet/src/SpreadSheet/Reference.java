@@ -9,6 +9,14 @@ public class Reference implements DataType {
         this.reference = reference;
     }
 
+    public Cell getReference() {
+        return reference;
+    }
+
+    public void setReference(Cell reference) {
+        this.reference = reference;
+    }
+
     @Override
     public Object getValue() {
         return reference.getValue();

@@ -9,12 +9,17 @@ public class Cell implements ISubject, IObserver {
     private DataType value;
     private Sheet sheet;
     //List of cells that observe this
-    List<Cell> observerList = new ArrayList<>();
+    List<Cell> observerList;
 
     public Cell(int row, int col, DataType value) {
         this.row = row;
         this.col = col;
         this.value = value;
+        //check observer
+        if (value.getClass().getName().equals("Reference")) {
+            ((Reference) value).getReference().addObserver(this);
+        }
+        observerList = new ArrayList<>();
     }
 
     public int getRow() {
@@ -62,6 +67,9 @@ public class Cell implements ISubject, IObserver {
         return "[" + row + "," + col + "]";
     }
 
+    public void addObserver(Cell observer) {
+        this.observerList.add(observer);
+    }
     @Override
     public void notifyObservers() {
         for (Cell cell : observerList) cell.update();
