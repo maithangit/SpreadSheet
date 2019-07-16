@@ -34,7 +34,7 @@ public class Spreadsheet extends JPanel {
         //Set up renderer and editor for the Favorite Color column.
         grid.setDefaultRenderer(Object.class, new CellRenderer(sheet));
         grid.setDefaultEditor(Object.class, new CellEditor(sheet));
-        //JTableExtensions.setJTableColumnsWidth(grid, 700, 15, 15, 30, 40);
+        JTableExtensions.setJTableColumnsWidth(grid, 700, 15, 15, 30, 40);
 
         // using scroll panel
         JScrollPane scroll = new JScrollPane(grid);
