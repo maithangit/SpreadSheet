@@ -10,8 +10,8 @@ public class Token {
 	public Token() {
 		tokenType = TokenType.UNKNOWN;
 	}
-	   
-	public Token(String contents) {
+
+    public Token(String contents) {
        switch(contents) {
            case "+":
                tokenType = TokenType.OPERATOR;
@@ -29,13 +29,15 @@ public class Token {
                tokenType = TokenType.OPERATOR;
                //operator = contents.charAt(0);
                operator = new Multiply();
-               precedence = 2;
+               //precedence = 2;
+               precedence = 1;
                break;
            case "/":
         	   tokenType = TokenType.OPERATOR;
                //operator = contents.charAt(0);
         	   operator = new Divide();
-               precedence = 2;
+               precedence = 1;
+//               precedence = 2;
                break;
            case "(":
         	   tokenType = TokenType.OPEN_PARENTHESIS;

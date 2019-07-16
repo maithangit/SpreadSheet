@@ -12,6 +12,12 @@ public class Cell {
 		this.value = DataTypeFactory.getInstanceType(content);
 		this.sheet = sheet;
 	}
+	public Cell(int row, int column, Object content, Sheet sheet){
+		this.row = row;
+		this.col = column;
+		this.value = DataTypeFactory.getInstanceType(content);
+		this.sheet = sheet;
+	}
 	
 	public int getRow() {
 		return row;
@@ -39,6 +45,10 @@ public class Cell {
 
 	public Object getValue() {
 		return value.getValue();
+	}
+
+	public String getSyntax(){
+		return this.value.getSyntax();
 	}
 
 	public String getContent() {

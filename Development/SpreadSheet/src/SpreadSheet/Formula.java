@@ -5,9 +5,12 @@ import Calculator.Calculator;
 public class Formula implements DataType {
     private String content;
     private Object valueAfterCalculated;
-    public Formula(String content, String formatedContent){
+    private String syntax;
+    public Formula(String content, String parseContent){
         this.content = content;
-        valueAfterCalculated = new Calculator().calculate(formatedContent);
+        Calculator calculator = new Calculator();
+        valueAfterCalculated = calculator.calculate(parseContent);
+        this.syntax = calculator.getSyntax();
     }
     
     @Override
@@ -18,5 +21,10 @@ public class Formula implements DataType {
     @Override
     public String getContent() {
         return content;
+    }
+
+    @Override
+    public String getSyntax() {
+        return this.syntax;
     }
 }
