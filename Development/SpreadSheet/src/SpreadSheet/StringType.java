@@ -19,4 +19,9 @@ public class StringType extends Single  {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public String getSyntax() {
+        return String.format("\"%s\"", this.content);
+    }
 }

@@ -19,4 +19,9 @@ public class NumberType extends Single {
     public String getContent() {
         return content.toString();
     }
+
+    @Override
+    public String getSyntax() {
+        return this.content.toString();
+    }
 }

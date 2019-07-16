@@ -5,4 +5,9 @@ public class Plus extends Operator{
 	public double compute(double left, double right) {
 		return left + right;
 	}
+
+	@Override
+	public String toString() {
+		return "+";
+	}
 }

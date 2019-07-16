@@ -18,19 +18,18 @@ parse inputs:
 Number/String + Operation = Formula
 */
 public class DataTypeFactory {
-    private enum types {
-        String, Number, Reference, Formula
-    }
 
-    public static DataType getInstanceType(String content) {
+    public static DataType getInstanceType(Object data) {
+        String content = data.toString();
         if (isNumeric(content)) {
             Double val = Double.parseDouble(content);
             return new NumberType(val);
-        } else if (isReference(content)) {
-            Cell reference = parseReferenceContent(content);
-            if (reference != null) return new Reference(parseReferenceContent(content));
         } else if (isFormula(content)) {
             return new Formula(content, parseReferenceInFormula(content));
+        } else if (isReference(content)) {
+            Cell reference = parseReferenceContent(content);
+            if (reference != null)
+                return new Reference(parseReferenceContent(content));
         }
         return new StringType(content);
     }
@@ -44,34 +43,28 @@ public class DataTypeFactory {
         return true;
     }
 
-//    public static boolean isFormula(String content) {
-//        Pattern pattern = Pattern.compile("((\\d*\\.\\d+)|(\\d+)|([\\+\\-\\*/\\(\\)]))");
-//        Matcher m = pattern.matcher(content);
-//        return m.lookingAt();
-//    }
-    
     public static boolean isFormula(String content) {
         //Pattern pattern = Pattern.compile("([+*/-])");
-    	Pattern pattern = Pattern.compile("(([-+*\\/ ])*\\d+((\\.\\d+)?)|(\\[[\\d+][\\,\\ ]*[\\d+]\\]))");
+        Pattern pattern = Pattern.compile("(([-+*\\/ ])*\\d+((\\.\\d+)?)|(\\[[\\d+][\\,\\ ]*[\\d+]\\]))");
         Matcher m = pattern.matcher(content);
         return m.find();
     }
 
     public static boolean isReference(String content) {
-        Pattern pattern = Pattern.compile("(\\[\\d+,(\\s)?\\d+\\])");
+        Pattern pattern = Pattern.compile("(\\[(\\d+),(\\s)?(\\d+)\\])");
         Matcher m = pattern.matcher(content);
         return m.matches();
     }
 
-    private static String parseReferenceInFormula(String content){
+    private static String parseReferenceInFormula(String content) {
         String result = content;
-        Pattern pattern = Pattern.compile("(\\[\\d+,(\\s)?\\d+\\])");
+        Pattern pattern = Pattern.compile("(\\[(\\d+),(\\s)?(\\d+)\\])");
         Matcher m = pattern.matcher(content);
 
-        while(m.find()){
+        while (m.find()) {
             String refStr = m.group();
             Cell c = parseReferenceContent(refStr);
-            if(c != null){
+            if (c != null) {
                 result = result.replace(refStr, c.getValue().toString());
             }
         }
@@ -80,12 +73,13 @@ public class DataTypeFactory {
     }
 
     private static Cell parseReferenceContent(String content) {
-        int start = content.indexOf("[");
-        int end = content.indexOf("]");
-        if (start < 0 || end < 0) return null;
-        //parse the content to find r, c
-        int r = content.charAt(start + 1) - '0', c = content.charAt(end - 1) - '0';
-        //find in list cell
-        return Sheet.getCell(r, c);
+        Pattern pattern = Pattern.compile("(\\[(\\d+),(\\d+)\\])");
+        Matcher m = pattern.matcher(content);
+        if (m.matches()) {
+            int row = Integer.valueOf(m.group(2));
+            int col = Integer.valueOf(m.group(3));
+            return Sheet.getCell(row, col);
+        }
+        return null;
     }
 }
