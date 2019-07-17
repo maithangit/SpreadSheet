@@ -1,6 +1,7 @@
 package ui;
 
 import SpreadSheet.Cell;
+import SpreadSheet.DataTypeFactory;
 import SpreadSheet.Sheet;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 public class Spreadsheet extends JPanel {
     private boolean DEBUG = false;
     private JTextField textFieldFx;
+    JTable grid;
 
     public Spreadsheet() {
         super(new BorderLayout());
@@ -25,8 +27,8 @@ public class Spreadsheet extends JPanel {
         sheet.dummyData();
 
         // initial JTable display
-        JTable grid = new JTable(new Worksheets(sheet));
-        grid.setPreferredScrollableViewportSize(new Dimension(700, 550));
+        grid = new JTable(new Worksheets(sheet));
+        grid.setPreferredScrollableViewportSize(new Dimension(1024, 600));
         grid.setFillsViewportHeight(true);
         grid.setCellSelectionEnabled(true);
         grid.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -34,12 +36,19 @@ public class Spreadsheet extends JPanel {
         //Set up renderer and editor for the Favorite Color column.
         grid.setDefaultRenderer(Object.class, new CellRenderer(sheet));
         grid.setDefaultEditor(Object.class, new CellEditor(sheet));
-        JTableExtensions.setJTableColumnsWidth(grid, 700, 15, 15, 30, 40);
+        
+        double colPercentage[] = new double[sheet.getMaxCol()];
+        colPercentage[0] = 10.0;
+        for (int i = 1; i < sheet.getMaxCol(); i++) {
+			colPercentage[i] = 100 / sheet.getMaxCol();
+		}
+        
+        JTableExtensions.setJTableColumnsWidth(grid, 1024, colPercentage);
 
         // using scroll panel
         JScrollPane scroll = new JScrollPane(grid);
         scroll.setRowHeaderView(JTableExtensions.buildRowHeader(grid));
-        grid.setRowHeight(35);
+        grid.setRowHeight(30);
 
         // add controls to main panel
         add(scroll, BorderLayout.CENTER);
@@ -159,7 +168,19 @@ public class Spreadsheet extends JPanel {
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
             sheet.modifyCell(rowIndex + 1, columnIndex + 1, aValue);
+            
             fireTableDataChanged();
+        }
+        
+        @Override
+        public void fireTableDataChanged() {
+        	super.fireTableDataChanged();
+        	//TODO: Refactor - apply observer to enhance performance
+        	for (int i = 0; i<= sheet.getMaxRow();i++) {
+				for (int j = 0; j <= sheet.getMaxCol(); j++) {
+					sheet.reloadCell(i, j);	
+				}
+			}
         }
     }
 }

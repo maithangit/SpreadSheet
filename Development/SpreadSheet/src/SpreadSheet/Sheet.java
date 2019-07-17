@@ -43,8 +43,14 @@ public class Sheet {
     }
 
     public void addCell(int row, int column, Object content) {
-        Cell cell = new Cell(row, column, content, this);
-        cells.add(cell);
+    	Cell cell = getCell(row, column);
+    	if (cell == null)
+		{
+			cell = new Cell(row, column);
+			cells.add(cell);
+		}
+    	cell.setValue(DataTypeFactory.getInstanceType(content));
+    		
     }
 
     public void addCells(List<Cell> listCells) {
@@ -137,6 +143,13 @@ public class Sheet {
         cell.setValue(DataTypeFactory.getInstanceType(content));
     }
 
+    public void reloadCell(int r, int c) {
+        Cell cell = getCell(r, c);
+        if (cell != null) {
+        	cell.setValue(DataTypeFactory.getInstanceType(cell.getContent()));
+        }
+    }
+    
     public void print() {
         System.out.println(toString());
 
@@ -160,8 +173,17 @@ public class Sheet {
         System.out.println(examination.toString());
     }
 
+    private void prepareSheet(int noRow, int noCol) {
+    	for (int i = 0; i <= noRow; i++) {
+			for (int j = 0; j <= noCol; j++) {
+				this.addCell(i,j,"");
+			}
+		}
+    }
+    
     public void dummyData() {
-        this.addCell(1, 1, "Airfare:");
+    	prepareSheet(20,20);
+    	this.addCell(1, 1, "Airfare:");
         this.addCell(1, 2, "6885.15");
         this.addCell(1, 3, "5");
         this.addCell(1, 4, "What we pay to the airlines");
@@ -202,7 +224,7 @@ public class Sheet {
         this.addCell(8, 4, "");
 
         this.addCell(9, 1, "Total:");
-        this.addCell(9, 2, "[7,2] - [7,2] * [8,2]");
+        this.modifyCell(9, 2, "[7,2] * (1.0 - [8,2])");
         this.addCell(9, 3, "");
         this.addCell(9, 4, "");
 
@@ -217,13 +239,10 @@ public class Sheet {
         this.addCell(11, 4, "");
 
         this.addCell(12, 1, "Installments:");
-        this.addCell(12, 2, "139.559375");
+        this.addCell(12, 2, "[9,2] / [10,2] / [11,2]");
         this.addCell(12, 3, "");
-        this.addCell(12, 4, "[9,2] / [10,2] / [11,2]");
-        //this.addCell(100, 100, " ");
-
         this.modifyCell(5, 2, "115 + 2 + 3 + 4 * 5 * 6 / 3 - 7 / 8");
         this.modifyCell(7, 2, "[1,2] + [2,2] + [3,2] + [4,2] + [5,2]");
-        this.modifyCell(9, 2, "[7,2] * (1.0 - [8,2])");
+        
     }
 }

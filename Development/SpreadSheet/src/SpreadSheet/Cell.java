@@ -6,6 +6,13 @@ public class Cell {
 	private DataType value;
 	private Sheet sheet;
 	
+	public Cell(int row, int col) {
+		this.row = row;
+		this.col = col;
+		this.value = null;
+		this.sheet = sheet;
+	}
+	
 	public Cell(int row, int col, String content) {
 		this.row = row;
 		this.col = col;

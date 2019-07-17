@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -116,7 +117,7 @@ public class JTableExtensions {
 
         RowHeaderRenderer(JTable table) {
             this.table = table;
-            var header = this.table.getTableHeader();
+            JTableHeader header = this.table.getTableHeader();
             setOpaque(true);
             setBorder(UIManager.getBorder("TableHeader.cellBorder"));
             setHorizontalAlignment(CENTER);

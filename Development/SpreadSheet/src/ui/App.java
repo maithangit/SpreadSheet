@@ -29,7 +29,8 @@ public class App {
         Spreadsheet spreadsheet = new Spreadsheet();
         spreadsheet.setOpaque(true); //content panes must be opaque
         frame.setContentPane(spreadsheet);
-        frame.setSize(760, 650);
+        frame.setSize(1024, 768);
+        
 
         // centralized spreadsheet
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

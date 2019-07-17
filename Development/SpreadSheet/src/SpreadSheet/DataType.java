@@ -1,7 +1,7 @@
 package SpreadSheet;
 
 public interface DataType {
-    void updateValue();
+    //void updateValue();
     Object getValue();
     String getContent();
     String getSyntax();
